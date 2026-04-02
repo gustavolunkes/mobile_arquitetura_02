@@ -1,4 +1,4 @@
-import 'package:product_app/domain/entities/product.dart';
+import '../../domain/entities/product.dart';
 
 class ProductState {
   final bool isLoading;
@@ -6,10 +6,16 @@ class ProductState {
   final String? error;
 
   const ProductState({
-    this.isLoading = false, 
-    this.products = const [], 
-    this.error
+    this.isLoading = false,
+    this.products = const [],
+    this.error,
   });
+
+  // Obter quantidade de favoritos
+  int get favoriteCount => products.where((p) => p.favorite).length;
+
+  // Obter lista de produtos favoritos
+  List<Product> get favorites => products.where((p) => p.favorite).toList();
 
   ProductState copyWith({
     bool? isLoading,
